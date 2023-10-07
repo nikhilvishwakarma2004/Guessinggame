@@ -1,28 +1,77 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-using namespace std;
+// Java program for the above approach
+import java.util.Scanner;
 
-int main()
-{
-	int num, guess, tries = 0;
-	srand(time(0)); //seed random number generator
-	num = rand() % 100 + 1; // random number between 1 and 100
-	cout << "Guess My Number Game\n\n";
+public class GFG {
 
-	do
+	// Function that implements the
+	// number guessing game
+	public static void
+	guessingNumberGame()
 	{
-		cout << "Enter a guess between 1 and 100 : ";
-		cin >> guess;
-		tries++;
+		// Scanner Class
+		Scanner sc = new Scanner(System.in);
 
-		if (guess > num)
-			cout << "Too high!\n\n";
-		else if (guess < num)
-			cout << "Too low!\n\n";
-		else
-			cout << "\nCorrect! You got it in " << tries << " guesses!\n";
-	} while (guess != num);
+		// Generate the numbers
+		int number = 1 + (int)(100
+							* Math.random());
 
-	return 0;
+		// Given K trials
+		int K = 5;
+
+		int i, guess;
+
+		System.out.println(
+			"A number is chosen"
+			+ " between 1 to 100."
+			+ "Guess the number"
+			+ " within 5 trials.");
+
+		// Iterate over K Trials
+		for (i = 0; i < K; i++) {
+
+			System.out.println(
+				"Guess the number:");
+
+			// Take input for guessing
+			guess = sc.nextInt();
+
+			// If the number is guessed
+			if (number == guess) {
+				System.out.println(
+					"Congratulations!"
+					+ " You guessed the number.");
+				break;
+			}
+			else if (number > guess
+					&& i != K - 1) {
+				System.out.println(
+					"The number is "
+					+ "greater than " + guess);
+			}
+			else if (number < guess
+					&& i != K - 1) {
+				System.out.println(
+					"The number is"
+					+ " less than " + guess);
+			}
+		}
+
+		if (i == K) {
+			System.out.println(
+				"You have exhausted"
+				+ " K trials.");
+
+			System.out.println(
+				"The number was " + number);
+		}
+	}
+
+	// Driver Code
+	public static void
+	main(String arg[])
+	{
+
+		// Function Call
+		guessingNumberGame();
+	}
 }
